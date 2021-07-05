@@ -61,6 +61,9 @@
     "testPathIgnorePatterns": [
       "/node_modules/",
       "/Ticketing/native-base-theme/"
+    ],
+    "setupFiles": [
+      "<rootDir>/jest/setup.js"
     ]
   }
 }
