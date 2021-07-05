@@ -6,13 +6,19 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
-    "test": "jest",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
+    "lint": "eslint .",
+    "bundle-android": "react-native bundle --entry-file index.js  --platform android --dev false --bundle-output ./android/app/src/main/assets/index.android.bundle --assets-dest ./android/app/src/main/res",
+    "buildRelease": "cd android && ./gradlew assembleRelease",
+    "cleanRelease": "cd android && ./gradlew clean && ./gradlew assembleRelease --stacktrace",
+    "cleanAndroid": "cd android && ./gradlew clean",
+    "buildDebug": "cd android && ./gradlew assembleDebug",
+    "test": "jest --coverage --env=jsdom"
   },
   "dependencies": {
     "@react-native-community/masked-view": "^0.1.11",
     "@react-navigation/native": "^5.9.4",
     "@react-navigation/stack": "^5.14.5",
+    "@types/react-native-permissions": "^2.0.0",
     "react": "17.0.1",
     "react-native": "0.64.1",
     "react-native-android-sms-listener": "^0.8.0",
@@ -36,8 +42,10 @@
     "babel-jest": "^26.6.3",
     "eslint": "^7.14.0",
     "jest": "^26.6.3",
+    "jest-react-native": "^18.0.0",
     "metro-react-native-babel-preset": "^0.64.0",
-    "react-test-renderer": "17.0.1",
+    "react-test-renderer": "^17.0.2",
+    "ts-jest": "^27.0.3",
     "typescript": "^3.8.3"
   },
   "resolutions": {
@@ -45,13 +53,14 @@
   },
   "jest": {
     "preset": "react-native",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "jsx",
-      "json",
-      "node"
+    "automock": false,
+    "cacheDirectory": "./cache",
+    "transformIgnorePatterns": [
+      "node_modules/(?!((jest-)?@react-native|react-native|native-base-shoutem-theme|react-native-easy-grid|react-native-drawer|react-native-vector-icons|react-native-keyboard-aware-scroll-view|react-native-iphone-x-helper|react-navigation|@react-navigation/.*|react-native-camera|react-native-qrcode-scanner|react-native-android-sms-listener)/)"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/Ticketing/native-base-theme/"
     ]
   }
 }

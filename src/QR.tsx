@@ -2,10 +2,8 @@ import React from 'react';
 import {Linking, Text, TouchableOpacity, View} from 'react-native';
 import {RNCamera} from 'react-native-camera';
 import QRCodeScanner from 'react-native-qrcode-scanner';
-import RNBootSplash from 'react-native-bootsplash';
 
 export default () => {
-  RNBootSplash.show(); // immediate
   return (
     <View style={{width: '100%', height: '100%'}}>
       <QRCodeScanner
