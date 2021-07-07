@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {Text, View} from 'react-native';
+import {styles} from './styles';
 import SmsListener from 'react-native-android-sms-listener';
 
 export default () => {
@@ -8,13 +9,12 @@ export default () => {
     originatingAddress: string;
     timestamp: number;
   }>();
-
   SmsListener.addListener((message: any) => {
     console.info(message);
     setstate(message);
   });
   return (
-    <View style={{width: '100%', height: '100%'}}>
+    <View style={styles.smsView}>
       <Text>{state?.body}</Text>
     </View>
   );
